@@ -1,0 +1,166 @@
+Repo Link : https://github.com/Adrin-Bershik-C-J/Java-Day4-Proj1-Phase1
+
+Directory structure:
+└── adrin-bershik-c-j-java-day4-proj1-phase1/
+    ├── pom.xml
+    └── src/
+        ├── main/
+        │   └── java/
+        │       ├── com/
+        │       │   └── day4proj1phase1/
+        │       │       └── App.java
+        │       ├── exceptions/
+        │       │   └── InvalidAgeException.java
+        │       ├── main/
+        │       │   └── Main.java
+        │       ├── models/
+        │       │   └── User.java
+        │       └── services/
+        │           └── UserService.java
+        └── test/
+            └── java/
+                └── com/
+                    └── day4proj1phase1/
+                        └── AppTest.java
+
+User.java:
+package models;
+
+public class User {
+
+    private String userName;
+    private int age;
+
+    public User(String userName, int age) {
+        this.userName = userName;
+        this.age = age;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+}
+
+InvalidAgeException.java:
+package exceptions;
+
+public class InvalidAgeException extends Exception {
+
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+UserService.java:
+package services;
+
+import exceptions.InvalidAgeException;
+import models.User;
+
+public class UserService {
+    public void registerUser(User user) throws InvalidAgeException {
+
+        if(user.getAge()<18){
+            throw new InvalidAgeException("User should be 18 or above to register");
+        }
+
+        System.out.println("User "+user.getUserName()+" regsitered successfully");
+    }
+}
+
+Main.java:
+package main;
+
+import exceptions.InvalidAgeException;
+import models.User;
+import services.UserService;
+
+public class Main {
+    public static void main(String[] args) {
+
+        UserService obj = new UserService();
+        User user = new User("Adrin", 21);
+        User user2 = new User("Bershik", 10);
+
+        try {
+            obj.registerUser(user);
+            obj.registerUser(user2);
+        } catch (InvalidAgeException e) {
+            System.out.print("Registration failed: " + e.getMessage());
+        }
+    }
+}
+
+README.md:
+# Java-Day4-Proj1-Phase1
+
+## 📌 Project Overview
+
+This is a simple Java project that demonstrates **exception handling**, **OOP principles**, and **modular code structure** using packages. It simulates a basic user registration system with an age validation rule.
+
+---
+
+## 📁 Project Structure
+
+Directory structure:
+└── adrin-bershik-c-j-java-day4-proj1-phase1/
+    ├── pom.xml
+    └── src/
+        ├── main/
+        │   └── java/
+        │       ├── com/
+        │       │   └── day4proj1phase1/
+        │       │       └── App.java
+        │       ├── exceptions/
+        │       │   └── InvalidAgeException.java
+        │       ├── main/
+        │       │   └── Main.java
+        │       ├── models/
+        │       │   └── User.java
+        │       └── services/
+        │           └── UserService.java
+        └── test/
+            └── java/
+                └── com/
+                    └── day4proj1phase1/
+                        └── AppTest.java
+
+---
+
+## 🔍 Module Description
+
+### `models/User.java`
+Defines a `User` class with basic attributes: `userName` and `age`, and their getters.
+
+### `exceptions/InvalidAgeException.java`
+Custom checked exception thrown when a user under 18 attempts to register.
+
+### `services/UserService.java`
+Contains business logic to register a user. Throws `InvalidAgeException` if the user is below 18 years of age.
+
+### `main/Main.java`
+Entry point of the program. Creates users and attempts to register them via `UserService`, demonstrating exception handling.
+
+---
+
+## ✅ Features Demonstrated
+
+- Java OOP concepts
+- Custom exception handling
+- Clean package-based architecture
+- Simple service-based design
+
+---
+
+## 🚀 How to Run
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Adrin-Bershik-C-J/Java-Day4-Proj1-Phase1.git
+   cd Java-Day4-Proj1-Phase1
+```
